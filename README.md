@@ -1,4 +1,5 @@
 # WMS-alioos-one
+Link to youtube channel where i put updates how it's works : https://www.youtube.com/channel/UCjeqI8fFeu3YWQ6K2wfOirQ
 Is a WMS that uses python and the flask framework to display the system on a website. The main idea is for the system to have nested packaging capability, to add as many packages as you want to each package. The system will use to scan products, packages, camera locations from a cell phone and will be connected to a label printer. The database for the system is in MySQL Currently, the system consists of several moduless such as : 
 Zostaw (Putaway) -> Produkt (put away product)
 Zostaw (Putaway) -> Opak.zbiorcze (putaway packaging)
