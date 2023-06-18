@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Zostaw produkt</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+    <div class="menu">
+      <ul>
+        <li><a href="/">Zostaw</a>
+          <ul>
+            <li><a href="/sprawdz/produkt">Produkt</a></li>
+            <li><a href="#">Opak.zbiorcze</a></li>
+          </ul>
+        </li>
+        <li><a href="/">Weź</a>
+          <ul>
+            <li><a href="#">Produkt</a></li>
+            <li><a href="#">Opak.zbiorcze</a></li>
+          </ul>
+        </li>
+        <li><a href="/">Wyświetl</a>
+          <ul>
+            <li><a href="#">Produkt</a></li>
+            <li><a href="#">Opak.zbiorcze</a></li>
+            <li><a href="#">Miejsce</a></li>
+          </ul>
+        </li>
+        <li><a href="/">Przesuń</a>
+          <ul>
+            <li><a href="#">Produkt</a></li>
+            <li><a href="#">Opak.zbiorcze</a></li>
+          </ul>
+        </li>
+        <li><a href="/">Dodaj</a>
+          <ul>
+            <li><a href="#">Produkt</a></li>
+            <li><a href="#">Opak.zbiorcze</a></li>
+            <li><a href="#">Miejsce</a></li>
+          </ul>
+        </li>
+        <li><a href="/">Usuń</a>
+          <ul>
+            <li><a href="#">Produkt</a></li>
+            <li><a href="#">Opak.zbiorcze</a></li>
+            <li><a href="#">Miejsce</a></li>
+          </ul>
+        </li>
+        <li><a href="/">Ustawienia</a></li>
+      </ul>
+    </div>
+         <h2>Przypisany produkt</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Id produktu</th>
+                <th>Nazwa produktu</th>
+                <th>Barcode produktu</th>
+                <th>Opakowanie zbiorcze</th>
+                <th>Miejsce</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for przypisany in przypisane %}
+            <tr>
+                <td>{{ przypisany[0] }}</td>
+                <td>{{ przypisany[1] }}</td>
+                <td>{{ przypisany[2] }}</td>
+                <td>{{ przypisany[3] }}</td>
+                <td>{{ przypisany[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    {% for przypisany in przypisane %}
+    <div style="display: flex; justify-content: flex-start;">
+        <button type="submit" onclick="window.location='{{ url_for('zostaw_produkt.zostaw_produkt', nazwa=nazwa, barcode=barcode) }}'">Przypisz jeszcze raz produkt:  {{ przypisany[1] }}</button>
+    {% endfor %}
+
+
+</body>
+</html>

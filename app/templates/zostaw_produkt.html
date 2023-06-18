@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Zostaw produkt</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+    <div class="menu">
+      <ul>
+        <li><a href="/">Zostaw</a>
+          <ul>
+            <li><a href="/sprawdz/produkt">Produkt</a></li>
+            <li><a href="/sprawdz_opak_zbiorcze/opakowanie">Opak.zbiorcze</a></li>
+          </ul>
+        </li>
+        <li><a href="/">Weź</a>
+          <ul>
+            <li><a href="#">Produkt</a></li>
+            <li><a href="#">Opak.zbiorcze</a></li>
+          </ul>
+        </li>
+        <li><a href="/">Wyświetl</a>
+          <ul>
+            <li><a href="#">Produkt</a></li>
+            <li><a href="#">Opak.zbiorcze</a></li>
+            <li><a href="#">Miejsce</a></li>
+          </ul>
+        </li>
+        <li><a href="/">Przesuń</a>
+          <ul>
+            <li><a href="#">Produkt</a></li>
+            <li><a href="#">Opak.zbiorcze</a></li>
+          </ul>
+        </li>
+        <li><a href="/">Dodaj</a>
+          <ul>
+            <li><a href="#">Produkt</a></li>
+            <li><a href="#">Opak.zbiorcze</a></li>
+            <li><a href="#">Miejsce</a></li>
+          </ul>
+        </li>
+        <li><a href="/">Usuń</a>
+          <ul>
+            <li><a href="#">Produkt</a></li>
+            <li><a href="#">Opak.zbiorcze</a></li>
+            <li><a href="#">Miejsce</a></li>
+          </ul>
+        </li>
+        <li><a href="/">Ustawienia</a></li>
+      </ul>
+    </div>
+    <br>
+    <h3>PRZYPISZ DO OPAK.ZBIORCZEGO/MIEJSCA</h3>
+  <table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nazwa</th>
+      <th>Barcode</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ produkt[0] }}</td>
+      <td id="nazwa">{{ produkt[1] }}</td>
+      <td id="barcode">{{ produkt[2] }}</td>
+    </tr>
+  </tbody>
+    <br>
+    <br>
+</table>
+    <form id="myForm" action="{{ url_for('zostaw_produkt.zostaw_produkt', nazwa=produkt[1], barcode=produkt[2]) }}" method="POST">
+    <input type="hidden" name="produkt" value="{{ produkt }}">
+    <br>
+    <label for="ilosc">Ilość</label>
+    <input type="number" name="ilosc" id="ilosc" value="1" placeholder="Wpisz ilość produktu">
+    <br><br>
+    <label for="opakowanie_zbiorcze">Opakowanie zbiorcze</label>
+    <input type="text" name="opakowanie_zbiorcze" id="opakowanie_zbiorcze" placeholder="Zeskanuj lub wpisz opakowanie zbiorcze">
+    <br><br>
+    <label for="miejsce">Miejsce</label>
+    <input type="text" name="miejsce" id="miejsce" placeholder="Zeskanuj lub wpisz miejsce">
+    <br><br>
+    {% if message %}
+    <div style="color: red; white-space: pre-line;">
+        <p>{{ message }}</p>
+    </div>
+    {% endif %}
+    <div style="display: flex; justify-content: flex-start;">
+        <button type="button" onclick="window.location.href='{{ url_for('sprawdz_produkt.sprawdz_produkt') }}'">Wstecz</button>
+        <span>&nbsp;</span>
+        <button type="submit">Zapisz</button>
+    </div>
+</form>
+<br>
+<br>
+
+
+
+<h3>Lokalizacja produktu:  {{ produkt[1] }}</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Opak.zbiorcze</th>
+      <th>Miejsce</th>
+        <th>Ilosc</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for miejsce in miejsca %}
+    <tr>
+      <td>{{ miejsce[0] }}</td>
+      <td>{{ miejsce[1] }}</td>
+        <td>{{ miejsce[2] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+    </body>
+</html>
